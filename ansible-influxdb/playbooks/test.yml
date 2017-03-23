@@ -1,5 +1,7 @@
 ---
 
+- include: '../../common-ansible-playbooks/pki.yml'
+
 - hosts: 'placeholder_fqdn'
   become: True
 
