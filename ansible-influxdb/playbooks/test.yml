@@ -1,0 +1,13 @@
+---
+
+- hosts: 'placeholder_fqdn'
+  become: True
+
+  roles:
+
+      # InfluxDB requires configured InfluxDB Server
+    - role: 'ansible-influxdb_server'
+
+      # Configure InfluxDB using cloned role
+    - role: 'ansible-influxdb'
+

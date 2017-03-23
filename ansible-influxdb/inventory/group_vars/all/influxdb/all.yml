@@ -1,0 +1,12 @@
+---
+
+influxdb__users:
+
+  - user: 'travis_test'
+
+  - user: 'travis'
+
+influxdb__databases:
+
+  - database: 'travis_test'
+
