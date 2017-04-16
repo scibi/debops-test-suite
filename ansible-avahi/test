@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# test: Test debops.nfs
+# test: Test debops.avahi
 # Copyright (C) 2014 Nick Janetakis <nick.janetakis@gmail.com>
 # Part of the DebOps project - http://debops.org/
 
@@ -13,16 +13,25 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
+ansible-galaxy -f install debops.ferm debops.nsswitch
+
+
 assert_playbook_check_runs
 assert_playbook_idempotent
 
 
-assert_path "/etc/default/nfs-common"
+echo "List of Avahi services"
+avahi-browse -a -r -t
 
 
-assert_running "rpcbind"
+assert_path "/etc/avahi/services/ssh.service"
+assert_path "/etc/avahi/services/device-info.service"
+assert_path "/etc/avahi/aliases"
+assert_path "/usr/local/sbin/avahi-alias"
+
+
+assert_running "avahi-daemon"
 
 
 # Test documentation
 assert_docs
-

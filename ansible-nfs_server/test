@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# test: Test debops.nfs
+# test: Test debops.nfs_server
 # Copyright (C) 2014 Nick Janetakis <nick.janetakis@gmail.com>
 # Part of the DebOps project - http://debops.org/
 
@@ -13,11 +13,15 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
+ansible-galaxy -f install debops.etc_services debops.ferm debops.tcpwrappers
+
+
 assert_playbook_check_runs
 assert_playbook_idempotent
 
 
-assert_path "/etc/default/nfs-common"
+assert_path "/srv/nfs"
+assert_path "/etc/exports.d/ansible.exports"
 
 
 assert_running "rpcbind"
@@ -25,4 +29,3 @@ assert_running "rpcbind"
 
 # Test documentation
 assert_docs
-

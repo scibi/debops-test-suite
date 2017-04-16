@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# test: Test debops.nfs
+# test: Test debops.sks
 # Copyright (C) 2014 Nick Janetakis <nick.janetakis@gmail.com>
 # Part of the DebOps project - http://debops.org/
 
@@ -16,13 +16,4 @@ ansible_plugins
 assert_playbook_check_runs
 assert_playbook_idempotent
 
-
-assert_path "/etc/default/nfs-common"
-
-
-assert_running "rpcbind"
-
-
-# Test documentation
-assert_docs
 
