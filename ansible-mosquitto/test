@@ -9,14 +9,16 @@
 . "${ROLESPEC_TEST}/../defaults.conf"
 
 echo "DEBUG - start ================================="
+pwd
 
-find .
+find ..
 
-mkdir -p "inventory/group_vars/debops_service_mosquitto"
-cat > inventory/group_vars/debops_service_mosquitto/mosquitto.yml <<EOF
+mkdir -p "travis/tests/ansible-mosquitto/inventory/group_vars/debops_service_mosquitto"
+
+cat > travis/tests/ansible-mosquitto/inventory/group_vars/debops_service_mosquitto/mosquitto.yml <<EOF
 ---
 
-mosquitto__upstream: ${MOSQUITTO_UPSTREAM-:False}
+mosquitto__upstream: ${MOSQUITTO_UPSTREAM:-False}
 
 EOF
 
@@ -24,7 +26,7 @@ echo "===="
 
 find .
 
-cat inventory/group_vars/debops_service_mosquitto/mosquitto.yml
+cat travis/tests/ansible-mosquitto/inventory/group_vars/debops_service_mosquitto/mosquitto.yml
 
 echo "DEBUG - stop  ================================="
 install_ansible ${test_ansible_version}
