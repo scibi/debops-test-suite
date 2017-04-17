@@ -8,13 +8,7 @@
 . "${ROLESPEC_LIB}/main"
 . "${ROLESPEC_TEST}/../defaults.conf"
 
-echo "DEBUG - start ================================="
-pwd
-
-find ..
-
 mkdir -p "travis/tests/ansible-mosquitto/inventory/group_vars/debops_service_mosquitto"
-
 cat > travis/tests/ansible-mosquitto/inventory/group_vars/debops_service_mosquitto/mosquitto.yml <<EOF
 ---
 
@@ -22,13 +16,9 @@ mosquitto__upstream: ${MOSQUITTO_UPSTREAM:-False}
 
 EOF
 
-echo "===="
-
-find .
-
+echo "Role configuration:"
 cat travis/tests/ansible-mosquitto/inventory/group_vars/debops_service_mosquitto/mosquitto.yml
 
-echo "DEBUG - stop  ================================="
 install_ansible ${test_ansible_version}
 ansible_plugins
 
